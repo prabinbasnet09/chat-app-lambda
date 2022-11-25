@@ -1,4 +1,5 @@
 const AWS = require('aws-sdk')
+const util = require('../utils/util')
 
 AWS.config.update({
     region: 'us-east-1'
@@ -17,12 +18,12 @@ async function userAdd(userInfo){
     }
 
     const dbUser = await dynamodb.get(param).promise().then(response => {
-        return response;
+        return response.Item;
     }, error => {
         console.error("Server error. Please try again later!", error)
     })
 
-    if(dbUser || (dbUser.username === username)){
+    if(dbUser || dbUser.username){
         return util.buildResponse(403, "Username is already taken")
     }
 
