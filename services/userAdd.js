@@ -23,7 +23,7 @@ async function userAdd(userInfo){
         console.error("Server error. Please try again later!", error)
     })
 
-    if(dbUser || dbUser.username){
+    if(dbUser){
         return util.buildResponse(403, "Username is already taken")
     }
 
