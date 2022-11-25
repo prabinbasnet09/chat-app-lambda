@@ -12,7 +12,7 @@ async function register(groupInfo){
     const groupName = groupInfo.group_name;
     const groupPassword = groupInfo.group_password;
     const encryptedPassword = bcrypt.hashSync(groupPassword, 10);
-
+    
     const group = {
         TableName: tableName,
         Item: {
